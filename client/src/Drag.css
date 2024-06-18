@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+  }
+  
+  .squares {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .boxes {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .box {
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .square-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .square {
+    width: 80px;
+    height: 80px;
+    background-color: #f0f0f0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+  }
+  
+  .dragging-over {
+    background-color: lightblue;
+  }
+  
+  .square-in-box {
+    width: 100%;
+    background-color: #f0f0f0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 6px;
+    margin-top: 4px;
+  }
