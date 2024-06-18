@@ -20,18 +20,6 @@ const Profile = () => {
             <p>Email: {user.email}</p>
             <p className="email-info">Note: Your email cannot be seen by other users</p>
             <h2 className='profile-text'>Your Recent Comments:</h2>
-            <div className="thought-cards-p">
-                {user.thoughts.map((thought) => (
-                    <div key={thought._id} className="thought-card">
-                        <div className='thought-header'>
-                            <p className='thought-author'>{thought.pageParams}</p>
-                        </div>
-                        <p className="card-text">Posted: {thought.createdAt}</p>
-                        <h3 className="card-title">{thought.thoughtText}</h3>
-
-                    </div>
-                ))}
-            </div>
         </div>
     );
 };

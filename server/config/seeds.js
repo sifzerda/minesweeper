@@ -5,35 +5,6 @@ const cleanDB = require('./cleanDB');
 db.once('open', async () => {
   try {
     await cleanDB('User', 'users');
-    await cleanDB('Thought', 'thoughts');
-
-    // Create thoughts
-//    const thoughts = await Thought.create([
-//      {
-//        thoughtText: "Test thought 1",
-//        thoughtAuthor: "Sal",
-//        createdAt: new Date('2024-05-12T10:00:00Z'),
-//        pageParams: 'Story'
-//      },
-//      {
-//        thoughtText: "Test thought 2",
-//        thoughtAuthor: "Sal",
-//        createdAt: new Date('2024-05-10T15:30:00Z'),
-//        pageParams: 'Premise'
-//      },
-//      {
-//        thoughtText: "Test thought 3",
-//        thoughtAuthor: "Xandromus",
-//        createdAt: new Date('2024-05-12T10:00:00Z'),
-//        pageParams: 'Plot'
-//      },
-//      {
-//        thoughtText: "Test thought 4",
-//        thoughtAuthor: "Xandromus",
-//        createdAt: new Date('2024-05-10T15:30:00Z'),
-//        pageParams: 'Editing'
-//      }
-//    ]);
 
     // Create users
     await User.create([
@@ -41,13 +12,11 @@ db.once('open', async () => {
         username: 'Xandromus',
         email: 'xandro@aol.com',
         password: '12345',
-        //thoughts: [thoughts[2], thoughts[3]] 
       },
       {
         username: 'Sal',
         email: 'sal@hotmail.com',
         password: '12345',
-        //thoughts: [thoughts[0], thoughts[1]] 
       },
       {
         username: 'Lernantino',
@@ -67,7 +36,6 @@ db.once('open', async () => {
     ]);
 
     console.log('🔑 users seeded');
-    //console.log('💭 thoughts seeded');
 
     process.exit();
   } catch (err) {

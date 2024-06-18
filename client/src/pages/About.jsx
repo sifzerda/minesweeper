@@ -3,7 +3,7 @@ import '../App.css';
 export default function About () {
   return (
     <div>
-      <h1>About</h1>
+      <h1>The Game</h1>
 
       <div className="separator-line"></div>
 

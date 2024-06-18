@@ -8,7 +8,7 @@ function Footer() {
         <div className="col-lg-8">
 
           <p className="footer-text">
-          🚩 minesweeper 🚩
+          <span className='flag'>🚩</span> minesweeper <span className='flag'>🚩</span>
           </p>
 
           <p className="footer-text">sifzerda</p>

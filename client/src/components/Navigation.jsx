@@ -15,12 +15,12 @@ function Navigation() {
         <React.Fragment>
           <li className="nav-item">
             <Link to="/Profile" className={currentPage === '/account' ? 'nav-link active' : 'nav-link'}>
-              Profile
+              PROFILE
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/" onClick={() => Auth.logout()} className="nav-link">
-              Logout
+              LOGOUT
             </Link>
           </li>
         </React.Fragment>
@@ -30,12 +30,12 @@ function Navigation() {
         <React.Fragment>
           <li className="nav-item">
             <Link to="/signup" className={currentPage === '/signup' ? 'nav-link active' : 'nav-link'}>
-              Signup
+              SIGNUP
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/login" className={currentPage === '/login' ? 'nav-link active' : 'nav-link'}>
-              Login
+              LOGIN
             </Link>
           </li>
         </React.Fragment>
@@ -56,7 +56,7 @@ function Navigation() {
  
           className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
         >
-          About
+          GAME
         </Link>
       </li>
 
