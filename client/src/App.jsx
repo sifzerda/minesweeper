@@ -4,9 +4,6 @@ import { Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Footer from './components/Footer';
-//import Sidebar from './components/Sidebar';
-import Hrefs from './components/Hrefs';
-//import Subjects from './components/Subjects';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -42,7 +39,6 @@ function App() {
 
         <div className="bucket-app">
           <aside className="sidebar">
-             <Hrefs /> 
             {/* <Subjects /> */}
           </aside>
 

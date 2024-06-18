@@ -56,27 +56,10 @@ function Navigation() {
  
           className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
         >
-          About Me
+          About
         </Link>
       </li>
 
-      <li className="nav-item">
-
-        <Link
-          to="/Contact"
-   
-          className={currentPage === '/Contact' ? 'nav-link active' : 'nav-link'}
-        >
-          Contact
-        </Link>
-      </li>
-
-                 {/* New Tab Linking to Fiction-Map - currently a Google placeholder */}
-                 <li className="nav-item">
-        <a href="https://fiction-map-d72538a215a2.herokuapp.com" className="nav-link" target="_blank" rel="noopener noreferrer">
-          Fiction Map
-        </a>
-      </li>
 
     {/* ---------------------------------- log in conditional function --------------------------------  */}
 
