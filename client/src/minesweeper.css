@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 /* ------------------------- minesweeper -------------------------*/
 
 .grid-wrapper {
@@ -122,4 +124,20 @@
   .submit-button-m:active {
     transform: translateY(2px); /* Move button down slightly when pressed */
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Reduce shadow for pressed effect */
+  }
+
+  .timer-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .timer-text {
+    font-size: 1rem;
+    padding: 7px;
+    color: var(--volt);
+    background-color: black;
+    border: 2px solid var(--blue);
+    font-family: 'Share Tech Mono', 'Open Sans', 'Helvetica Neue', sans-serif
   }

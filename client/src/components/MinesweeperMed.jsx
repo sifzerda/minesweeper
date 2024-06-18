@@ -4,7 +4,7 @@ import '../App.css'; // Assuming App.css is your stylesheet for styling
 const Grid = () => {
   const rows = 20;
   const cols = 20;
-  const maxReveal = 2; // Maximum surrounding safe cells to reveal
+  const maxReveal = 3; // Maximum surrounding safe cells to reveal
 
   const directions = [
     [-1, -1], [-1, 0], [-1, 1],
@@ -25,17 +25,37 @@ const Grid = () => {
   };
 
   const [grid, setGrid] = useState(generateInitialGrid());
-  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 90); // Total cells minus 5 bombs
+  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 90); // Total cells minus 20 bombs
   const [revealedNonBombCount, setRevealedNonBombCount] = useState(0);
+  const [timer, setTimer] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if (isActive) {
+      const interval = setInterval(() => {
+        setTimer(timer => timer + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [isActive]);
 
   useEffect(() => {
     checkWinCondition();
   }, [revealedNonBombCount]);
 
+  const startTimer = () => {
+    if (!isActive) {
+      setIsActive(true);
+    }
+  };
+
   const handleClick = (row, col) => {
     const cell = grid[row][col];
     if (!cell.active || cell.revealed) {
       return; // Do nothing if cell is inactive or already revealed
+    }
+    if (!isActive) {
+      startTimer(); // Start the timer on the first click
     }
     const newGrid = [...grid];
     if (cell.content === 'X') {
@@ -131,17 +151,23 @@ const Grid = () => {
 
     setGrid(newGrid);
     setRevealedNonBombCount(0);
+    setTimer(0); // Reset timer
+    setIsActive(false); // Stop timer
   };
 
   const checkWinCondition = () => {
     if (revealedNonBombCount === nonBombCellsCount) {
-      alert('You won!');
+      setIsActive(false); // Stop timer when game is won
+      alert(`You won! Time taken: ${timer} seconds`);
     }
   };
 
   return (
     <div>
       <div className="grid-container">
+          <div className="timer-container">
+        <p className='timer-text'>Time: {timer}</p>
+      </div>
         {grid.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
             {row.map((cell, colIndex) => (
@@ -156,12 +182,12 @@ const Grid = () => {
             ))}
           </div>
         ))}
-        </div>
-        <div className='button-container-z'>
+      </div>
+      <div className='button-container-z'>
         <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
       </div>
-      </div>
-    );
-  };
+    </div>
+  );
+};
 
 export default Grid;
