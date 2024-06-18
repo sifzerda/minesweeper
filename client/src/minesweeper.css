@@ -126,18 +126,29 @@
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Reduce shadow for pressed effect */
   }
 
-  .timer-container {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    margin-top: 20px;
-  }
+.timer-score-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 
-  .timer-text {
-    font-size: 1rem;
-    padding: 7px;
-    color: var(--volt);
-    background-color: black;
-    border: 2px solid var(--blue);
-    font-family: 'Share Tech Mono', 'Open Sans', 'Helvetica Neue', sans-serif
-  }
+.timer-container,
+.score-container {
+  display: inline-block;  
+  background-color: black;
+  border-radius: 5px;
+  border: 2px solid var(--blue);
+  margin: 0 5px;  
+  padding: 0;  
+  line-height: 1; 
+}
+
+.timer-container p,
+.score-container p {
+  font-size: 1rem;
+  margin: 0;  
+  padding: 7px;
+  color: var(--volt);
+  background-color: black;
+  font-family: 'Share Tech Mono', 'Open Sans', 'Helvetica Neue', sans-serif;
+}

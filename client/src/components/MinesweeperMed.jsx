@@ -27,6 +27,7 @@ const Grid = () => {
   const [grid, setGrid] = useState(generateInitialGrid());
   const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 90); // Total cells minus 20 bombs
   const [revealedNonBombCount, setRevealedNonBombCount] = useState(0);
+  const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -74,7 +75,7 @@ const Grid = () => {
       setGrid(newGrid);
 
       setTimeout(() => {
-        alert('You clicked a bomb! Game over.');
+        alert(`You activated a mine. Game Over. Score: ${score}, Time taken: ${timer} seconds`);
         generateNewGrid();
       }, 500);
     } else {
@@ -84,6 +85,7 @@ const Grid = () => {
 
         newGrid[r][c].revealed = true;
         setRevealedNonBombCount(prevCount => prevCount + 1); // Increment count of revealed non-bomb cells
+        setScore(prevScore => prevScore + 10); // Increase score when revealing a cell
         cellsToReveal--;
 
         if (newGrid[r][c].content === '') {
@@ -151,6 +153,7 @@ const Grid = () => {
 
     setGrid(newGrid);
     setRevealedNonBombCount(0);
+    setScore(0); // Reset score
     setTimer(0); // Reset timer
     setIsActive(false); // Stop timer
   };
@@ -158,16 +161,21 @@ const Grid = () => {
   const checkWinCondition = () => {
     if (revealedNonBombCount === nonBombCellsCount) {
       setIsActive(false); // Stop timer when game is won
-      alert(`You won! Time taken: ${timer} seconds`);
+      alert(`You won! Score: ${score}, Time taken: ${timer} seconds`);
     }
   };
 
   return (
     <div>
       <div className="grid-container">
+        <div className="timer-score-container">
           <div className="timer-container">
-        <p className='timer-text'>Time: {timer}</p>
-      </div>
+            <p className='timer-text'>Time: {timer}</p>
+          </div>
+          <div className="score-container">
+            <p className='timer-text'>Score: {score}</p>
+          </div>
+        </div>
         {grid.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
             {row.map((cell, colIndex) => (
