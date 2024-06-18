@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import '../App.css'; // Assuming App.css is your stylesheet for styling
 
 const Grid = () => {
-  const rows = 10;
-  const cols = 10;
-  const maxReveal = 3; // Maximum surrounding safe cells to reveal
+  const rows = 20;
+  const cols = 20;
+  const maxReveal = 2; // Maximum surrounding safe cells to reveal
 
   const directions = [
     [-1, -1], [-1, 0], [-1, 1],
@@ -25,7 +25,7 @@ const Grid = () => {
   };
 
   const [grid, setGrid] = useState(generateInitialGrid());
-  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 20); // Total cells minus 5 bombs
+  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 90); // Total cells minus 5 bombs
   const [revealedNonBombCount, setRevealedNonBombCount] = useState(0);
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const Grid = () => {
     const newGrid = generateInitialGrid();
 
     const randomCells = [];
-    while (randomCells.length < 20) {
+    while (randomCells.length < 90) {
       const randomRow = Math.floor(Math.random() * rows);
       const randomCol = Math.floor(Math.random() * cols);
       if (!randomCells.some(cell => cell.row === randomRow && cell.col === randomCol)) {
@@ -156,12 +156,12 @@ const Grid = () => {
             ))}
           </div>
         ))}
+        </div>
+        <div className='button-container-z'>
+        <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
       </div>
-      <div className='button-container-z'>
-      <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
-    </div>
-    </div>
-  );
-};
+      </div>
+    );
+  };
 
 export default Grid;

@@ -4,20 +4,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Adjust height as needed */
   }
   
   .white-box {
+    display: grid;
+    place-items: center; 
     background-color: white;
     padding: 20px;
+    padding-left: 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: fit-content; /* Adjusts width to fit content */
+    height: fit-content; /* Adjusts height to fit content */
   }
   
   .grid-container {
     margin-top: 20px; 
     display: grid;
-    grid-template-columns: repeat(10, 30px); /* Adjust cell width as needed */
   }
   
   .cell {
@@ -56,14 +59,6 @@
     background-color: red;
     color: white;
   }
-
-  /* Board.css */
-.board {
-    display: flex;
-    flex-wrap: wrap;
-    width: fit-content;
-    margin: auto;
-  }
   
   .row {
     display: flex;
@@ -95,9 +90,6 @@
   }
   
   .grid {
-    display: grid;
-    grid-template-columns: repeat(10, 30px); /* 10 columns each 30px wide */
-    grid-template-rows: repeat(10, 30px); /* 10 rows each 30px high */
     gap: 1px; /* Gap between squares */
     border: 1px solid #000; /* Border around the grid */
   }
@@ -107,4 +99,27 @@
     height: 30px; /* Square height */
     background-color: #fff; /* Square background color */
     border: 1px solid #000; /* Square border */
+  }
+
+.submit-button-m {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: var(--volt);
+  color: var(--midnight);
+  border: 2px solid var(--blue);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Increased box shadow for lift effect */
+}
+
+  .submit-button-m:hover {
+    background-color: #ffffff;
+    border: 2px solid var(--blue);
+    color: var(--blue);
+  }
+
+  .submit-button-m:active {
+    transform: translateY(2px); /* Move button down slightly when pressed */
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Reduce shadow for pressed effect */
   }
