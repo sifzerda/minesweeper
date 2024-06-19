@@ -28,7 +28,7 @@ const Grid = () => {
   };
 
   const [grid, setGrid] = useState(generateInitialGrid());
-  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 20); // Total cells minus 20 bombs
+  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 2); 
   const [revealedNonBombCount, setRevealedNonBombCount] = useState(0);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
@@ -91,7 +91,7 @@ const Grid = () => {
 
       setTimeout(() => {
         alert(`You activated a mine. Game Over. Score: ${score}, Time taken: ${timer} seconds`);
-        generateNewGrid();
+        setShowFinalScore(true); // Navigate to FinalScore screen
       }, 500);
     } else {
       // Clicked on a non-bomb cell
@@ -136,7 +136,7 @@ const Grid = () => {
     const newGrid = generateInitialGrid();
 
     const randomCells = [];
-    while (randomCells.length < 20) {
+    while (randomCells.length < 2) {
       const randomRow = Math.floor(Math.random() * rows);
       const randomCol = Math.floor(Math.random() * cols);
       if (!randomCells.some(cell => cell.row === randomRow && cell.col === randomCol)) {
@@ -176,14 +176,8 @@ const Grid = () => {
   const checkWinCondition = () => {
     if (revealedNonBombCount === nonBombCellsCount) {
       setIsActive(false); // Stop timer when game is won
-      setTimeout(() => {
-        showFinalScorePage();
-      }, 5000); // Delay before showing final score page
+      setShowFinalScore(true); // Navigate to FinalScore screen
     }
-  };
-
-  const showFinalScorePage = () => {
-    setShowFinalScore(true);
   };
 
   if (showHighScores) {
