@@ -7,6 +7,11 @@ function Navigation() {
   const currentPage = useLocation().pathname;
   const isLoggedIn = Auth.loggedIn();
 
+    // Function to determine active class based on current page
+    function isActive(path) {
+      return currentPage === path ? 'nav-link active' : 'nav-link';
+    }
+
   // login condition //
 
   function showNavigation() {
@@ -14,7 +19,7 @@ function Navigation() {
       return (
         <React.Fragment>
           <li className="nav-item">
-            <Link to="/Profile" className={currentPage === '/account' ? 'nav-link active' : 'nav-link'}>
+            <Link to="/profile" className={isActive('/profile')}>
               PROFILE
             </Link>
           </li>
@@ -29,12 +34,12 @@ function Navigation() {
       return (
         <React.Fragment>
           <li className="nav-item">
-            <Link to="/signup" className={currentPage === '/signup' ? 'nav-link active' : 'nav-link'}>
+            <Link to="/signup" className={isActive('/signup')}>
               SIGNUP
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/login" className={currentPage === '/login' ? 'nav-link active' : 'nav-link'}>
+            <Link to="/login" className={isActive('/login')}>
               LOGIN
             </Link>
           </li>
@@ -47,18 +52,14 @@ function Navigation() {
 
 // ------------------------------- MAIN NAVIGATION LINKS ------------------//
 
-  return (
-    <ul className="nav nav-tabs">
-      <li className="nav-item">
+return (
+  <ul className="nav nav-tabs">
+    <li className="nav-item">
+      <Link to="/" className={isActive('/')}>
+        GAME
+      </Link>
+    </li>
 
-        <Link
-          to="/"
- 
-          className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
-        >
-          GAME
-        </Link>
-      </li>
 
 
     {/* ---------------------------------- log in conditional function --------------------------------  */}

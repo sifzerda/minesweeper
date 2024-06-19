@@ -199,40 +199,6 @@ div.container.my-1-9 {
   border: 1px solid white;
 }
 
-/* ---------------- profile -----------------*/
-
-.jumbo-bg-dark {
-  background-color: var(--bootstrap-dark) !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
-h1.jumbo-bg-dark-text {
-  margin: 32px 0;
-  color: var(--blue);
-  font-size: 35px;
-  font-family: 'Josefin Sans', 'Rubik', 'Arial Narrow Bold', sans-serif
-}
-
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.profile-container h1 {
-  text-align: center;
-}
-
-.profile-container p.email-info {
-  color: var(--light-red);
-  font-size: 0.9rem;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-
 /* bucket app ---------------------------------------------------------*/
 
 .bucket-app {
@@ -336,7 +302,7 @@ aside.sidebar {
 li.nav-item {
   min-width: 130px;
 }
-
+ 
 .sidebar {
   width: 250px;
   background-color: black;
