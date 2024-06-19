@@ -1,11 +1,13 @@
-const FinalScore = ({ score, time }) => {
+const FinalScore = ({ score, time, onHighScores }) => {
     return (
-      <div className="final-score-container">
-        <h1>Game Over</h1>
-        <p>Your final score: {score}</p>
-        <p>Time taken: {time} seconds</p>
+        <div className="grid-container">
+        <h1 className='start'>Game Over</h1>
+        <p className='black-text'>Your final score: {score}</p>
+        <p className='black-text'>Time taken: {time} seconds</p>
         {/* Additional content or navigation options can be added here */}
-      </div>
+        <button className="submit-button-m" onClick={() => window.location.reload()}>Play Again</button>
+        <button className="submit-button-m" onClick={onHighScores}>High Scores</button>
+    </div>
     );
   };
   

@@ -2,6 +2,34 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 /* ------------------------- minesweeper -------------------------*/
 
+h1 {
+  font-family: 'VT323', monospace;
+  font-size: 2.5rem;
+  color: var(--volt);
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: black;
+}
+
+.start {
+  position: relative;
+  border: 5px solid var(--midnight);
+}
+
+.end {
+  position: relative;
+  animation: neon-flashing 1s infinite alternate;
+  border: 5px solid var(--midnight);
+}
+
+@keyframes neon-flashing {
+  from {
+    text-shadow: 0 0 10px  white, 0 0 20px var(--volt), 0 0 30px var(--volt), 0 0 40px var(--volt), 0 0 70px #00fff6, 0 0 80px #00fff6;
+  }
+  to {
+    text-shadow: none;
+  }}
+
 .grid-wrapper {
     display: flex;
     justify-content: center;
@@ -15,6 +43,7 @@
     padding: 20px;
     padding-left: 40px;
     border-radius: 10px;
+    border: 8px solid var(--midnight);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: fit-content; /* Adjusts width to fit content */
     height: fit-content; /* Adjusts height to fit content */
@@ -104,7 +133,11 @@
   }
 
 .submit-button-m {
-  padding: 12px 24px;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto;
+  padding: 12px 16px;
   font-size: 16px;
   background-color: var(--volt);
   color: var(--midnight);
@@ -151,4 +184,33 @@
   color: var(--volt);
   background-color: black;
   font-family: 'Share Tech Mono', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+p.black-text {
+  color: black;
+}
+
+.high-scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.high-scores-table th, .high-scores-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.high-scores-table th {
+  background-color: #f2f2f2;
+}
+
+.high-scores-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.high-scores-table tbody tr:hover {
+  background-color: #e9ecef;
 }

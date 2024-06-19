@@ -11,8 +11,8 @@ const HighScores = () => {
   ];
 
   return (
-    <div className="high-scores-container">
-      <h1>High Scores</h1>
+    <div className="grid-container">
+      <h1 className='end'>High Scores</h1>
       <table className="high-scores-table">
         <thead>
           <tr>
@@ -33,9 +33,7 @@ const HighScores = () => {
           ))}
         </tbody>
       </table>
-      <div className="button-container">
         <button className="submit-button-m" onClick={() => window.location.reload()}>Back to Game</button>
-      </div>
     </div>
   );
 };
