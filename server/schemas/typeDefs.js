@@ -10,7 +10,7 @@ const typeDefs = `
 
     type MineScore {
     minePoints: Int
-    mineTimeLeft: Int
+    mineTimeTaken: Int
   }
 
   type Auth {
@@ -30,7 +30,7 @@ const typeDefs = `
     updateUser(username: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
     removeUser: User
-    saveMineScore(userId: ID!, minePoints: Int!, mineTimeLeft: Int!): User
+    saveMineScore(userId: ID!, minePoints: Int!, mineTimeTaken: Int!): User
   }
 `;
 

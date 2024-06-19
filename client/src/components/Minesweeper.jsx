@@ -221,7 +221,7 @@ const Grid = () => {
             ))}
           </div>
           <div className='button-container'>
-            <button className='submit-button' onClick={generateNewGrid}>Restart</button>
+            <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
           </div>
         </div>
       )}

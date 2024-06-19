@@ -73,10 +73,10 @@ const resolvers = {
       return { token, user };
     },
 
-    saveMineScore: async (parent, { userId, minePoints, mineTimeLeft }) => {
+    saveMineScore: async (parent, { userId, minePoints, mineTimeTaken }) => {
       const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $push: { mineScore: { minePoints, mineTimeLeft } } },
+        { $push: { mineScore: { minePoints, mineTimeTaken } } },
         { new: true }
       );
       if (!updatedUser) {

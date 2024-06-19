@@ -17,13 +17,20 @@ const HighScores = () => {
       allScores.push({
         username: user.username,
         minePoints: score.minePoints,
-        mineTimeLeft: score.mineTimeLeft,
+        mineTimeTaken: score.mineTimeTaken,
       });
     });
   });
 
-  // Sort combined scores by mineTimeLeft in descending order
-  allScores.sort((a, b) => b.mineTimeLeft - a.mineTimeLeft);
+  // Sort combined scores by minePoints in descending order
+  // If points are the same, then sort by mineTimeTaken in ascending order
+  allScores.sort((a, b) => {
+    if (b.minePoints !== a.minePoints) {
+      return b.minePoints - a.minePoints; // Sort by points descending
+    } else {
+      return a.mineTimeTaken - b.mineTimeTaken; // Sort by time ascending if points are tied
+    }
+  });
 
   return (
     <div className="grid-container">
@@ -33,7 +40,7 @@ const HighScores = () => {
           <tr>
             <th>#</th>
             <th>Score</th>
-            <th>Time left</th>
+            <th>Seconds</th>
             <th>Username</th>
           </tr>
         </thead>
@@ -42,7 +49,7 @@ const HighScores = () => {
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{score.minePoints}</td>
-              <td>{score.mineTimeLeft}</td>
+              <td>{score.mineTimeTaken}</td>
               <td>{score.username}</td>
             </tr>
           ))}

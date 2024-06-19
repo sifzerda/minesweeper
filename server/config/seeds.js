@@ -16,7 +16,7 @@ db.once('open', async () => {
         mineScore: [
           {
             minePoints: 100,
-            mineTimeLeft: 10
+            mineTimeTaken: 10
           }
         ]
       },
@@ -28,7 +28,7 @@ db.once('open', async () => {
         mineScore: [
           {
             minePoints: 90,
-            mineTimeLeft: 12
+            mineTimeTaken: 12
           }
         ]
       },
@@ -40,7 +40,7 @@ db.once('open', async () => {
         mineScore: [
           {
             minePoints: 50,
-            mineTimeLeft: 100
+            mineTimeTaken: 100
           }
         ]
       },

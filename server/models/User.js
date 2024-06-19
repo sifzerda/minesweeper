@@ -26,7 +26,7 @@ const userSchema = new Schema({
         type: Number,
         required: true,
       },
-      mineTimeLeft: {
+      mineTimeTaken: {
         type: Number,
         required: true,
       },
