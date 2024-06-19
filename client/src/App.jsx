@@ -38,9 +38,7 @@ function App() {
         </header>
 
         <div className="bucket-app">
-          <aside className="sidebar">
-            {/* <Subjects /> */}
-          </aside>
+
 
           <main className="main-content mx-3">
             <Outlet />
