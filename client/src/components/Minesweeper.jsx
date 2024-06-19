@@ -187,7 +187,7 @@ const Grid = () => {
   }
 
   if (showFinalScore) {
-    return <FinalScore score={score} time={timer} />;
+    return <FinalScore score={score} time={timer} onHighScores={showHighScorePage} />;
   }
 
   return (
