@@ -34,6 +34,8 @@ const Grid = () => {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [showHighScores, setShowHighScores] = useState(false); // Track if high scores page should be shown
+  const [showFinalScore, setShowFinalScore] = useState(false); // Track if final score page should be shown
 
   useEffect(() => {
     if (isActive) {
@@ -51,6 +53,10 @@ const Grid = () => {
   const startGame = () => {
     setGameStarted(true);
     generateNewGrid();
+  };
+
+  const showHighScorePage = () => {
+    setShowHighScores(true);
   };
 
   const startTimer = () => {
@@ -170,13 +176,27 @@ const Grid = () => {
   const checkWinCondition = () => {
     if (revealedNonBombCount === nonBombCellsCount) {
       setIsActive(false); // Stop timer when game is won
-      alert(`You won! Score: ${score}, Time taken: ${timer} seconds`);
+      setTimeout(() => {
+        showFinalScorePage();
+      }, 5000); // Delay before showing final score page
     }
   };
 
+  const showFinalScorePage = () => {
+    setShowFinalScore(true);
+  };
+
+  if (showHighScores) {
+    return <HighScores />;
+  }
+
+  if (showFinalScore) {
+    return <FinalScore score={score} time={timer} />;
+  }
+
   return (
     <div>
-      {!gameStarted && <StartGame onStartGame={startGame} />}
+      {!gameStarted && <StartGame onStartGame={startGame} onHighScores={showHighScorePage} />}
       
       {gameStarted && (
         <div>
