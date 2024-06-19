@@ -30,9 +30,12 @@ const HighScores = () => {
     } else {
       return a.mineTimeTaken - b.mineTimeTaken; // Sort by time ascending if points are tied
     }
-  });
+});
 
-  return (
+// Limit to top 20 scores
+const top20Scores = allScores.slice(0, 20);
+
+return (
     <div className="grid-container">
       <h1 className='end'>High Scores</h1>
       <table className="high-scores-table">
@@ -45,7 +48,7 @@ const HighScores = () => {
           </tr>
         </thead>
         <tbody>
-          {allScores.map((score, index) => (
+          {top20Scores.map((score, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{score.minePoints}</td>
