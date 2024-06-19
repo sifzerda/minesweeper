@@ -10,8 +10,6 @@ import Profile from './pages/Profile.jsx';
 
 // subjects
 
-import Minesweeper from './pages/Minesweeper.jsx';
-
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 
@@ -26,10 +24,7 @@ const router = createBrowserRouter([
         index: true,
         element: <About />,
       },
-      {
-        path: '/Minesweeper',
-        element: <Minesweeper />,
-      },
+
       {
         path: '/login',
         element: <Login />

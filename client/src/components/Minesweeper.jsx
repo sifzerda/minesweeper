@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import '../App.css'; // Assuming App.css is your stylesheet for styling
+import StartGame from '../components/StartGame';
+import HighScores from '../components/HighScores';
+import FinalScore from '../components/FinalScore';
 
 const Grid = () => {
   const rows = 10;
@@ -30,6 +33,7 @@ const Grid = () => {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
     if (isActive) {
@@ -43,6 +47,11 @@ const Grid = () => {
   useEffect(() => {
     checkWinCondition();
   }, [revealedNonBombCount]);
+
+  const startGame = () => {
+    setGameStarted(true);
+    generateNewGrid();
+  };
 
   const startTimer = () => {
     if (!isActive) {
@@ -167,33 +176,39 @@ const Grid = () => {
 
   return (
     <div>
-      <div className="grid-container">
-        <div className="timer-score-container">
-          <div className="timer-container">
-            <p className='timer-text'>Time: {timer}</p>
-          </div>
-          <div className="score-container">
-            <p className='timer-text'>Score: {score}</p>
-          </div>
-        </div>
-        {grid.map((row, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {row.map((cell, colIndex) => (
-              <div
-                key={colIndex}
-                className={`cell ${!cell.active ? 'inactive' : ''} ${cell.revealed ? 'revealed' : ''} ${cell.flagged ? 'flag' : ''}`}
-                onClick={() => handleClick(rowIndex, colIndex)}
-                onContextMenu={(event) => handleRightClick(event, rowIndex, colIndex)}
-              >
-                {cell.revealed ? cell.content : cell.flagged ? '🚩' : ''}
+      {!gameStarted && <StartGame onStartGame={startGame} />}
+      
+      {gameStarted && (
+        <div>
+          <div className="grid-container">
+            <div className="timer-score-container">
+              <div className="timer-container">
+                <p className='timer-text'>Time: {timer}</p>
+              </div>
+              <div className="score-container">
+                <p className='timer-text'>Score: {score}</p>
+              </div>
+            </div>
+            {grid.map((row, rowIndex) => (
+              <div key={rowIndex} className="row">
+                {row.map((cell, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`cell ${!cell.active ? 'inactive' : ''} ${cell.revealed ? 'revealed' : ''} ${cell.flagged ? 'flag' : ''}`}
+                    onClick={() => handleClick(rowIndex, colIndex)}
+                    onContextMenu={(event) => handleRightClick(event, rowIndex, colIndex)}
+                  >
+                    {cell.revealed ? cell.content : cell.flagged ? '🚩' : ''}
+                  </div>
+                ))}
               </div>
             ))}
           </div>
-        ))}
-      </div>
-      <div className='button-container-z'>
-        <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
-      </div>
+          <div className='button-container'>
+            <button className='submit-button' onClick={generateNewGrid}>Restart</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
