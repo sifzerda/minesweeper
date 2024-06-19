@@ -1,7 +1,5 @@
 import '../App.css';
 import Minesweeper from '../components/Minesweeper';
-import MinesweeperMed from '../components/MinesweeperMed';
-import MinesweeperHard from '../components/MinesweeperHard';
 import '../minesweeper.css';
 
 export default function About () {
@@ -24,30 +22,6 @@ Click on a square to reveal what is underneath it. The number in the cell indica
 </div>
 </div>
 {/* -------------- */}
-
-
-
-{/* game component */}
-
-<div className='grid-wrapper'>
-<div className='white-box'>
-      <MinesweeperMed />
-</div>
-</div>
-
-{/* -------------- */}
-
-
-{/* game component */}
-
-<div className='grid-wrapper'>
-<div className='white-box'>
-      <MinesweeperHard />
-</div>
-</div>
-
-{/* -------------- */}
-
 
     </div>
   );

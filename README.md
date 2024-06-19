@@ -1,6 +1,6 @@
 # Minesweeper
 
-This is a personal project to create a react MERN stack app which has a number of simple games. These were built from scratch (i.e. no code derived from elsewhere) with ChatGPT help. 
+This is a personal project to create a react MERN stack app which has a number of simple games. These were built with ChatGPT help only. 
 
 Games:
 - [x] Minesweeper
@@ -14,7 +14,6 @@ Games:
 - [ ] Bad Toys 
 - [ ] SideShow shooting gallery
 - [ ] Go Fish, Uno, etc (would need AI PC opponent)
-
 
 Others:
 
@@ -57,7 +56,6 @@ To change difficulty inside the game, you can change:
   -       const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 5); <---- change the 5
   -       while (randomCells.length < 5) <----- change the 5
 
-
 ## Steps to creating Minesweeper:
 
 1. <u>'const Grid'</u>: Create 5 x 5 grid
@@ -97,75 +95,13 @@ To change difficulty inside the game, you can change:
   - probably adjusted by user through radio switch (if 'easy' then render game with 6x6 and xx # bombs etc)
 - [x] right click applies flag, another removes flag
 - [x] win alert triggers when all cells (minus bomb cells) have been revealed
-- [ ] user can save score and view high scores through the game
-- [ ] user can view high scores on their profile page
-
-# SOLITAIRE ♤ ♡ ♢ ♧ 
-
-Parts of the game:
-- Tableau: Main game cards in 7 cols, card number = col number
-- Stock Pile: Remainder cards not in Tableau, cycles
-- Foundations: 4 places where cards stack by suit 
-
-(ONE) STOCKPILE COMPONENT
-- make twin boxes (box 1 = facedown card stack, box 2 = face up card cycle)
-- make box 1 an event listener, on-click box 2 cycles through max 52 values (i.e. click counter reset at 52)
-- 
-
-
-(TWO) FOUNDATIONS COMPONENT
-
-- create 4 boxes which cards will go into
-- configure to only accept ace cards
-  - configure to only accept a 1 card if an ace present
-    - configure 1s to accept only 2s
-      - " " 2s to only accept 3s
-        - " " 3s to only accept 4s
-          - ["..."] queens to only accept kings
-
-(THREE) TABLEAU
-
-- 
-
-
-
-Components:
-
-SolitaireGame (Main Component):
-
-Manages the overall state of the game.
-Renders the tableau, foundations, and stock pile.
-Tableau:
-
-Represents the main playing area where cards are laid out in columns.
-Contains multiple TableauColumn components.
-TableauColumn:
-
-Represents a single column in the tableau.
-Can contain multiple Card components.
-Foundations:
-
-Represents the foundation piles where cards are built up by suit.
-FoundationPile:
-
-Represents a single foundation pile.
-Can contain multiple Card components.
-StockPile:
-
-Represents the stock pile from which cards are drawn.
-Can be clicked to draw cards into the waste pile.
-Card:
-
-Represents a single playing card.
-Displays the card's suit, rank, and face status (face up or face down).
-
-
-## FOR ALL GAMES
-- [ ] point accumulation system in-play, + calc points per safe cells revealed, 
-- [ ] button to show high scores
-- [ ] if user logged in, can save high score (post to user array)
-- [ ] profile page where scores can be displayed
-- [ ] create a 'start game' landing screen with 'new game', 'set difficulty' and 'high scores' buttons
+- [x] user can save score and view high scores through the game
+- [x] user can view high scores on their profile page
+- [x] point accumulation system in-play, + calc points per safe cells revealed, 
+- [x] button to show high scores
+- [x] if user logged in, can save high score (post to user array)
+- [x] profile page where scores can be displayed
+- [x] create a 'start game' landing screen with 'new game', 'set difficulty' and 'high scores' buttons
 - [ ] have 8-bit chiptune stylized music play during game (with button that starts and stops music, maybe a speaker pic that gets struck through)
 - [ ] volume increase/decrease for music
-- [ ] play through DL (self-titled, FN, RO) albums as 8-bit, and can play next song in list
+- [ ] play through and can play next song in list

@@ -1,21 +1,10 @@
 import { useState, useEffect } from 'react';
 import '../App.css'; // Assuming App.css is your stylesheet for styling
-import StartGame from '../components/StartGame';
-import HighScores from '../components/HighScores';
-import FinalScore from '../components/FinalScore';
 
 const Grid = () => {
-  const [difficulty, setDifficulty] = useState('normal'); // State for difficulty level
-  const difficultyOptions = ['easy', 'normal', 'hard'];
-
-  // Define difficulty settings
-  const difficultySettings = {
-    easy: { rows: 5, cols: 5, bombs: 3 },
-    normal: { rows: 10, cols: 10, bombs: 5 },
-    hard: { rows: 15, cols: 15, bombs: 10 }
-  };
-
-  const { rows, cols, bombs } = difficultySettings[difficulty];
+  const rows = 10;
+  const cols = 10;
+  const maxReveal = 3; // Maximum surrounding safe cells to reveal
 
   const directions = [
     [-1, -1], [-1, 0], [-1, 1],
@@ -23,28 +12,24 @@ const Grid = () => {
     [1, -1], [1, 0], [1, 1]
   ];
 
-  // Function to generate initial grid based on difficulty settings
   const generateInitialGrid = () => {
     return Array(rows).fill().map((_, rowIndex) =>
       Array(cols).fill().map((_, colIndex) => ({
         id: rowIndex * cols + colIndex + 1,
         active: true,
         content: '',
-        revealed: false,
-        flagged: false
+        revealed: false, // Track if cell content has been revealed
+        flagged: false // Track if cell has been flagged
       }))
     );
   };
 
   const [grid, setGrid] = useState(generateInitialGrid());
-  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - bombs);
+  const [nonBombCellsCount, setNonBombCellsCount] = useState(rows * cols - 20); // Total cells minus 20 bombs
   const [revealedNonBombCount, setRevealedNonBombCount] = useState(0);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [showHighScores, setShowHighScores] = useState(false);
-  const [showFinalScore, setShowFinalScore] = useState(false);
 
   useEffect(() => {
     if (isActive) {
@@ -59,15 +44,6 @@ const Grid = () => {
     checkWinCondition();
   }, [revealedNonBombCount]);
 
-  const startGame = () => {
-    setGameStarted(true);
-    generateNewGrid();
-  };
-
-  const showHighScorePage = () => {
-    setShowHighScores(true);
-  };
-
   const startTimer = () => {
     if (!isActive) {
       setIsActive(true);
@@ -77,19 +53,21 @@ const Grid = () => {
   const handleClick = (row, col) => {
     const cell = grid[row][col];
     if (!cell.active || cell.revealed) {
-      return;
+      return; // Do nothing if cell is inactive or already revealed
     }
     if (!isActive) {
-      startTimer();
+      startTimer(); // Start the timer on the first click
     }
     const newGrid = [...grid];
     if (cell.content === 'X') {
+      // Clicked on a bomb
       newGrid.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
           if (cell.content === 'X') {
             newGrid[rowIndex][colIndex].content = '💣';
             newGrid[rowIndex][colIndex].active = false;
             newGrid[rowIndex][colIndex].revealed = true;
+            newGrid[rowIndex][colIndex].isBombClicked = true; // Mark bomb cell as clicked
           }
         });
       });
@@ -98,16 +76,16 @@ const Grid = () => {
 
       setTimeout(() => {
         alert(`You activated a mine. Game Over. Score: ${score}, Time taken: ${timer} seconds`);
-        setIsActive(false);
-        setShowFinalScore(true);
+        generateNewGrid();
       }, 500);
     } else {
+      // Clicked on a non-bomb cell
       const revealSafeCells = (r, c, cellsToReveal) => {
         if (newGrid[r][c].revealed || cellsToReveal === 0) return;
 
         newGrid[r][c].revealed = true;
-        setRevealedNonBombCount(prevCount => prevCount + 1);
-        setScore(prevScore => prevScore + 10);
+        setRevealedNonBombCount(prevCount => prevCount + 1); // Increment count of revealed non-bomb cells
+        setScore(prevScore => prevScore + 10); // Increase score when revealing a cell
         cellsToReveal--;
 
         if (newGrid[r][c].content === '') {
@@ -121,21 +99,21 @@ const Grid = () => {
         }
       };
 
-      revealSafeCells(row, col, 3);
+      revealSafeCells(row, col, maxReveal);
       setGrid(newGrid);
     }
   };
 
   const handleRightClick = (event, row, col) => {
-    event.preventDefault();
-
+    event.preventDefault(); // Prevent the context menu from showing up
+  
     if (!grid[row][col].active || grid[row][col].revealed) {
-      return;
+      return; // Do nothing if cell is inactive or already revealed
     }
-
+  
     const newGrid = [...grid];
-    newGrid[row][col].flagged = !newGrid[row][col].flagged;
-
+    newGrid[row][col].flagged = !newGrid[row][col].flagged; // Toggle flagged status
+  
     setGrid(newGrid);
   };
 
@@ -143,7 +121,7 @@ const Grid = () => {
     const newGrid = generateInitialGrid();
 
     const randomCells = [];
-    while (randomCells.length < bombs) {
+    while (randomCells.length < 20) {
       const randomRow = Math.floor(Math.random() * rows);
       const randomCol = Math.floor(Math.random() * cols);
       if (!randomCells.some(cell => cell.row === randomRow && cell.col === randomCol)) {
@@ -175,75 +153,47 @@ const Grid = () => {
 
     setGrid(newGrid);
     setRevealedNonBombCount(0);
-    setScore(0);
-    setTimer(0);
-    setIsActive(false);
+    setScore(0); // Reset score
+    setTimer(0); // Reset timer
+    setIsActive(false); // Stop timer
   };
 
   const checkWinCondition = () => {
     if (revealedNonBombCount === nonBombCellsCount) {
-      setIsActive(false);
+      setIsActive(false); // Stop timer when game is won
       alert(`You won! Score: ${score}, Time taken: ${timer} seconds`);
-      setShowFinalScore(true);
     }
   };
 
-  if (showHighScores) {
-    return <HighScores />;
-  }
-
-  if (showFinalScore) {
-    return <FinalScore score={score} time={timer} onHighScores={showHighScorePage} />;
-  }
-
   return (
     <div>
-      {!gameStarted && <StartGame onStartGame={startGame} onHighScores={showHighScorePage} />}
-      
-      {gameStarted && (
-        <div>
-          <div className="difficulty-selector">
-            {difficultyOptions.map(option => (
-              <label key={option}>
-                <input
-                  type="radio"
-                  value={option}
-                  checked={difficulty === option}
-                  onChange={() => setDifficulty(option)}
-                />
-                {option}
-              </label>
-            ))}
+      <div className="grid-container">
+        <div className="timer-score-container">
+          <div className="timer-container">
+            <p className='timer-text'>Time: {timer}</p>
           </div>
-          <div className="grid-container">
-            <div className="timer-score-container">
-              <div className="timer-container">
-                <p className='timer-text'>Time: {timer}</p>
-              </div>
-              <div className="score-container">
-                <p className='timer-text'>Score: {score}</p>
-              </div>
-            </div>
-            {grid.map((row, rowIndex) => (
-              <div key={rowIndex} className="row">
-                {row.map((cell, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className={`cell ${!cell.active ? 'inactive' : ''} ${cell.revealed ? 'revealed' : ''} ${cell.flagged ? 'flag' : ''}`}
-                    onClick={() => handleClick(rowIndex, colIndex)}
-                    onContextMenu={(event) => handleRightClick(event, rowIndex, colIndex)}
-                  >
-                    {cell.revealed ? cell.content : cell.flagged ? '🚩' : ''}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div className='button-container'>
-            <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
+          <div className="score-container">
+            <p className='timer-text'>Score: {score}</p>
           </div>
         </div>
-      )}
+        {grid.map((row, rowIndex) => (
+          <div key={rowIndex} className="row">
+            {row.map((cell, colIndex) => (
+              <div
+                key={colIndex}
+                className={`cell ${!cell.active ? 'inactive' : ''} ${cell.revealed ? 'revealed' : ''} ${cell.flagged ? 'flag' : ''}`}
+                onClick={() => handleClick(rowIndex, colIndex)}
+                onContextMenu={(event) => handleRightClick(event, rowIndex, colIndex)}
+              >
+                {cell.revealed ? cell.content : cell.flagged ? '🚩' : ''}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className='button-container-z'>
+        <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
+      </div>
     </div>
   );
 };
