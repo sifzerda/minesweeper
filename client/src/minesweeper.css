@@ -52,6 +52,9 @@ h1 {
   .grid-container {
     margin-top: 20px; 
     display: grid;
+    min-width: 900px;
+    place-items: center; 
+    
   }
   
   .cell {
