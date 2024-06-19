@@ -91,6 +91,7 @@ const Grid = () => {
 
       setTimeout(() => {
         alert(`You activated a mine. Game Over. Score: ${score}, Time taken: ${timer} seconds`);
+        setIsActive(false); // Stop the timer immediately upon game over
         setShowFinalScore(true); // Navigate to FinalScore screen
       }, 500);
     } else {
