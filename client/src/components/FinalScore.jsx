@@ -27,10 +27,12 @@ const FinalScore = ({ score, time, onHighScores }) => {
         });
         console.log('Score saved:', data.saveMineScore);
         // Optionally, you can trigger some UI update or action upon successful save
+        alert ('Your score was successfully saved!');
       } catch (error) {
         console.error('Error saving score:', error);
         // Handle error state or display a message to the user
-      }
+    alert ('There was an error saving your score', error);  
+    }
     };
   
     return (
