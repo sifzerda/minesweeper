@@ -1,18 +1,18 @@
+
 import { useState, useEffect } from 'react';
-import '../App.css'; // Assuming App.css is your stylesheet for styling
 import StartGame from '../components/StartGame';
 import HighScores from '../components/HighScores';
 import FinalScore from '../components/FinalScore';
 
 const Grid = () => {
-  const [difficulty, setDifficulty] = useState('normal'); // State for difficulty level
+  const [difficulty, setDifficulty] = useState('easy'); // State for difficulty level
   const difficultyOptions = ['easy', 'normal', 'hard'];
 
   // Define difficulty settings
   const difficultySettings = {
-    easy: { rows: 5, cols: 5, bombs: 3 },
-    normal: { rows: 10, cols: 10, bombs: 5 },
-    hard: { rows: 15, cols: 15, bombs: 10 }
+    easy: { rows: 10, cols: 10, bombs: 15 },
+    normal: { rows: 20, cols: 20, bombs: 90 },
+    hard: { rows: 30, cols: 30, bombs: 180 }
   };
 
   const { rows, cols, bombs } = difficultySettings[difficulty];
@@ -202,6 +202,9 @@ const Grid = () => {
       
       {gameStarted && (
         <div>
+
+{ /* difficulty radio switch */ }
+
           <div className="difficulty-selector">
             {difficultyOptions.map(option => (
               <label key={option}>
@@ -215,6 +218,15 @@ const Grid = () => {
               </label>
             ))}
           </div>
+          
+{ /* refresh game button */ }
+
+          <div className='button-container'>
+            <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
+          </div>
+
+{ /* main game grid */ }
+
           <div className="grid-container">
             <div className="timer-score-container">
               <div className="timer-container">
@@ -239,9 +251,14 @@ const Grid = () => {
               </div>
             ))}
           </div>
-          <div className='button-container'>
-            <button className='submit-button-m' onClick={generateNewGrid}>Restart</button>
-          </div>
+
+          { /* refresh game button */ }
+
+<div className='button-container'>
+<button className="submit-button-m" onClick={() => window.location.reload()}>Back to Menu</button>
+</div>
+
+
         </div>
       )}
     </div>
@@ -249,3 +266,6 @@ const Grid = () => {
 };
 
 export default Grid;
+
+
+
