@@ -176,6 +176,7 @@ const Grid = () => {
   const checkWinCondition = () => {
     if (revealedNonBombCount === nonBombCellsCount) {
       setIsActive(false); // Stop timer when game is won
+      alert(`You won! Score: ${score}, Time taken: ${timer} seconds`);
       setShowFinalScore(true); // Navigate to FinalScore screen
     }
   };
