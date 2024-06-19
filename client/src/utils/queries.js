@@ -11,17 +11,17 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_USERS = gql`
-{
-  users {
-    _id
-    username
-    email
-    gameState { 
-        _id
-        userId 
+  {
+    users {
+      _id
+      username
+      email
+      mineScore {
+        minePoints
+        mineTimeLeft
       }
+    }
   }
-}
 `;
 
 export const QUERY_ME = gql`
@@ -30,6 +30,15 @@ export const QUERY_ME = gql`
       _id
       username
       email
+    }
+  }
+`;
+
+export const GET_MINE_SCORE = gql`
+  query getMineScore($userId: ID!) {
+    getMineScore(userId: $userId) {
+      minePoints
+      mineTimeLeft
     }
   }
 `;

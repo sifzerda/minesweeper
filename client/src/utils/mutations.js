@@ -32,3 +32,18 @@ export const REMOVE_USER = gql`
     }
   }
 `;
+
+export const MUTATION_SAVE_MINE_SCORE = gql`
+  mutation saveMineScore($userId: ID!, $minePoints: Int!, $mineTimeLeft: Int!) {
+    saveMineScore(userId: $userId, minePoints: $minePoints, mineTimeLeft: $mineTimeLeft) {
+      _id
+      username
+      email
+      mineScore {
+        minePoints
+        mineTimeLeft
+      }
+    }
+  }
+`;
+

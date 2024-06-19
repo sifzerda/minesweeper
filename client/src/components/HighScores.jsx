@@ -1,14 +1,29 @@
 import '../App.css'; // Assuming App.css is your stylesheet for styling
+import { useQuery } from '@apollo/client';
+import { QUERY_USERS } from '../utils/queries';
 
 const HighScores = () => {
-  // Dummy data for high scores (can be fetched from API or stored in state/props)
-  const highScores = [
-    { id: 1, name: 'Player1', score: 100, time: 45 },
-    { id: 2, name: 'Player2', score: 90, time: 55 },
-    { id: 3, name: 'Player3', score: 85, time: 60 },
-    { id: 4, name: 'Player4', score: 80, time: 65 },
-    { id: 5, name: 'Player5', score: 75, time: 70 },
-  ];
+  const { loading, data, error } = useQuery(QUERY_USERS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const users = data.users; // Extracting users from query data
+
+  // Aggregate all mineScore entries with associated usernames
+  let allScores = [];
+  users.forEach(user => {
+    user.mineScore.forEach(score => {
+      allScores.push({
+        username: user.username,
+        minePoints: score.minePoints,
+        mineTimeLeft: score.mineTimeLeft,
+      });
+    });
+  });
+
+  // Sort combined scores by mineTimeLeft in descending order
+  allScores.sort((a, b) => b.mineTimeLeft - a.mineTimeLeft);
 
   return (
     <div className="grid-container">
@@ -17,23 +32,23 @@ const HighScores = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
             <th>Score</th>
-            <th>Time (seconds)</th>
+            <th>Time left</th>
+            <th>Username</th>
           </tr>
         </thead>
         <tbody>
-          {highScores.map((score, index) => (
-            <tr key={score.id}>
+          {allScores.map((score, index) => (
+            <tr key={index}>
               <td>{index + 1}</td>
-              <td>{score.name}</td>
-              <td>{score.score}</td>
-              <td>{score.time}</td>
+              <td>{score.minePoints}</td>
+              <td>{score.mineTimeLeft}</td>
+              <td>{score.username}</td>
             </tr>
           ))}
         </tbody>
       </table>
-        <button className="submit-button-m" onClick={() => window.location.reload()}>Back to Game</button>
+      <button className="submit-button-m" onClick={() => window.location.reload()}>Back to Game</button>
     </div>
   );
 };

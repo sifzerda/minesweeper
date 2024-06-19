@@ -4,8 +4,7 @@ const FinalScore = ({ score, time, onHighScores }) => {
         <h1 className='start'>Game Over</h1>
         <p className='black-text'>Your final score: {score}</p>
         <p className='black-text'>Time taken: {time} seconds</p>
-        {/* Additional content or navigation options can be added here */}
-        
+
         <button className="submit-button-m">Submit Score</button>
        
         <button className="submit-button-m" onClick={onHighScores}>High Scores</button>
