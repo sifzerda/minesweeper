@@ -85,8 +85,6 @@ INSERT SCREENSHOTS
 
 ## Installation
 
-Provide step-by-step instructions on how to install and set up the project. Use concise code blocks where necessary.
-
 ```bash
 git clone https://github.com/yourusername/project.git
 cd project
@@ -157,6 +155,9 @@ MINES #:
 - [ ] have 8-bit chiptune stylized music play during game (with button that starts and stops music, maybe a speaker pic that gets struck through)
 - [ ] volume increase/decrease for music
 - [ ] play through and can play next song in list
+- [ ] alter point accumulation system so time left is added to points where the less time taken = more points added
+- [ ] Alternatively create a timer which counts down from e.g. 200 seconds, and adds the remaining time multiplied by 10 to score
+  - [ ] May require altering models and how info is written and retrieved to user file 
 
 ## Support
 
