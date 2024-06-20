@@ -1,6 +1,6 @@
 # MINESWEEPER  💣 🚩
 
-Short description or tagline for the project.
+#1 in gamestack.
 
 ## Table of Contents
 
