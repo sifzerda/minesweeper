@@ -6,28 +6,36 @@ import { ADD_USER } from '../utils/mutations';
 
 function Signup() {
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
-  console.log('addUser:', addUser);  
-  console.log('addUser options:', addUser.options);
-  console.log('addUser mutation:', addUser.mutation);
+  const [addUser, { error }] = useMutation(ADD_USER);
+
   const [inputFocus, setInputFocus] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('Submitting form...');
-    const mutationResponse = await addUser({
-      variables: { ...formState },
-    });
-    console.log('Mutation response:', mutationResponse);
-    const token = mutationResponse.data.addUser.token;
-    console.log('Received token:', token);
-    Auth.login(token);
-    console.log('User logged in successfully.');
+
+    try {
+      const mutationResponse = await addUser({
+        variables: { ...formState },
+      });
+
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+      console.log('User logged in successfully.');
+    } catch (err) {
+      console.error('Error in signup:', err);
+      if (err.message.includes('username')) {
+        setFormError('Username already exists. Please choose another.');
+      } else if (err.message.includes('email')) {
+        setFormError('Email is already registered. Please use another.');
+      } else {
+        setFormError('Signup failed. Please try again.');
+      }
+    }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log('Updating form state...');
     setFormState({
       ...formState,
       [name]: value,
@@ -40,6 +48,7 @@ function Signup() {
 
       <h2 className="login-title">Signup</h2>
       <form className="signup-form" onSubmit={handleFormSubmit}>
+        {formError && <p className="error-message">{formError}</p>}
         <div className="form-group-z">
           <label htmlFor="username" className="label-z">Username:</label>
           <input

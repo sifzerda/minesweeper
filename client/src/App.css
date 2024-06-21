@@ -132,6 +132,12 @@ a.back-link {
   margin-bottom: 20px;
 }
 
+.error-message {
+  color: rgb(252, 74, 89);
+  font-size: 0.9em;  
+  margin-top: 5px;  
+}
+
 .submit-button-z:hover {
   background-color: #ffffff;
   border: 2px solid var(--blue);

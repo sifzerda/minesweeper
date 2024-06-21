@@ -86,9 +86,10 @@ INSERT SCREENSHOTS
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/project.git
-cd project
+git clone https://github.com/sifzerda/minesweeper.git
+cd minesweeper
 npm install
+npm run start
 ```
 
 ## Usage
