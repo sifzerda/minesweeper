@@ -1,7 +1,5 @@
 # MINESWEEPER  💣 🚩
 
-#1 in gamestack.
-
 ## Table of Contents
 
 - [MINESWEEPER  💣 🚩](#minesweeper---)
