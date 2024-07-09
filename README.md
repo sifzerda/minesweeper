@@ -176,7 +176,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Authors and Acknowledgement
 
-The author acknowledges and credits those who have contributed to this project. ChatGPT was used.
+The author acknowledges and credits those who have contributed to this project including:
+
+- ChatGPT
 
 ## License
 
