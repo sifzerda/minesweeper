@@ -21,7 +21,7 @@
 
 ## Description
 
-This is a personal project to create a react MERN stack app which has a number of simple games. These were built with ChatGPT help only. 
+This is a personal project to create a react MERN stack app which has a number of simple games. These were built with ChatGPT and trial and error.
 
 Games:
 
