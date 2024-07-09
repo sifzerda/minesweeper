@@ -25,7 +25,7 @@ Games:
 
 - [x] Minesweeper
 - [ ] Solitaire
-- [ ] Chess - would need an AI PC opponent
+- [ ] Chess 
 - [ ] Poker
 - [ ] Slot Machine
 - [ ] Pacman
@@ -34,26 +34,9 @@ Games:
 - [ ] Bad Toys 
 - [ ] SideShow shooting gallery
 - [ ] Go Fish, Uno, etc (would need AI PC opponent)
-
-Others:
-
-- solitaire
-- chess
-- poker
-- slot machine
-  - This would require points from other games to pay to play
-- 'bad toys' type simple shooting game with reticule/flashpoint, 
-  - Or sideshow type shooting gallery
-- fly swat type game, 'gun' is a flyswatter
-- pacman
-- frogger
-
-- pool (?)
-- pinball (?)
-
-Optional:
-- type of virtual reward shop where you trade points for virtual stuff, e.g. user avatars, 'trophies'
-
+- [ ] Pool
+- [ ] Pinball
+- [ ] Dirt Bike
 
 ## Badges
 
