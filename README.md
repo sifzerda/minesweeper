@@ -36,7 +36,7 @@ Games:
 - [ ] Go Fish, Uno, etc (would need AI PC opponent)
 - [ ] Pool
 - [ ] Pinball
-- [ ] Dirt Bike
+- [ ] Trial Bike
 
 ## Badges
 
