@@ -42,7 +42,7 @@ export const GET_MINE_SCORE = gql`
   query getMineScore($userId: ID!) {
     getMineScore(userId: $userId) {
       minePoints
-      minetimeTaken
+      mineTimeTaken
     }
   }
 `;
