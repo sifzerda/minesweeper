@@ -1,7 +1,5 @@
 # MINESWEEPER  💣 🚩
 
-#1 in gamestack.
-
 ## Table of Contents
 
 - [MINESWEEPER  💣 🚩](#minesweeper---)
@@ -21,13 +19,13 @@
 
 ## Description
 
-This is a personal project to create a react MERN stack app which has a number of simple games. These were built with ChatGPT help only. 
+This is a personal project to create a react MERN stack app which has a number of simple games. These were built with ChatGPT and trial and error.
 
 Games:
 
 - [x] Minesweeper
 - [ ] Solitaire
-- [ ] Chess - would need an AI PC opponent
+- [ ] Chess 
 - [ ] Poker
 - [ ] Slot Machine
 - [ ] Pacman
@@ -36,26 +34,9 @@ Games:
 - [ ] Bad Toys 
 - [ ] SideShow shooting gallery
 - [ ] Go Fish, Uno, etc (would need AI PC opponent)
-
-Others:
-
-- solitaire
-- chess
-- poker
-- slot machine
-  - This would require points from other games to pay to play
-- 'bad toys' type simple shooting game with reticule/flashpoint, 
-  - Or sideshow type shooting gallery
-- fly swat type game, 'gun' is a flyswatter
-- pacman
-- frogger
-
-- pool (?)
-- pinball (?)
-
-Optional:
-- type of virtual reward shop where you trade points for virtual stuff, e.g. user avatars, 'trophies'
-
+- [ ] Pool
+- [ ] Pinball
+- [ ] Trial Bike
 
 ## Badges
 
@@ -178,7 +159,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Authors and Acknowledgement
 
-The author acknowledges and credits those who have contributed to this project. ChatGPT was used.
+The author acknowledges and credits those who have contributed to this project including:
+
+- ChatGPT
 
 ## License
 
